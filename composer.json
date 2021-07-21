@@ -1,8 +1,8 @@
 {
-	"name": "codificar/Yii2ImageCache",
+	"name": "codificar/yii2imagecache",
 	"description": "ImageCache for Yii2",
 	"keywords": ["yii2", "image", "resize", "thumb", "cache"],
-	"homepage": "https://github.com/codificar/Yii2ImageCache",
+	"homepage": "https://github.com/codificar/yii2imagecache",
 	"type": "yii2-extension",
 	"authors": [
 		{
