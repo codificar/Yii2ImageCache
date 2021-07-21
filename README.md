@@ -29,10 +29,6 @@
 
 Based in [yii2-imagecache](https://github.com/iutbay/yii2-imagecache)
 
-Like the Image module in Drupal, this extension will resize your images on demand :-).
-If a thumb doesn't exist, the web server's rewrite rules will pass the request to Yii which in turn hands it off to ImageCache to dynamically generate the file.
-
-
 Installation
 ------------
 The preferred way to install this helper is through [composer](http://getcomposer.org/download/).
