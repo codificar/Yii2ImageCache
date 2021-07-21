@@ -4,6 +4,7 @@
 	"keywords": ["yii2", "image", "resize", "thumb", "cache"],
 	"homepage": "https://github.com/codificar/yii2imagecache",
 	"type": "yii2-extension",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Randler Ferraz",
