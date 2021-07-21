@@ -1,0 +1,19 @@
+{
+	"name": "codificar/Yii2ImageCache",
+	"description": "ImageCache for Yii2",
+	"keywords": ["yii2", "image", "resize", "thumb", "cache"],
+	"homepage": "https://github.com/codificar/Yii2ImageCache",
+	"type": "yii2-extension",
+	"authors": [
+		{
+			"name": "Randler Ferraz",
+			"email": "randlersi@gmail.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2-imagine": "*"
+	},
+	"autoload": {
+		"psr-4": {"codificar\\yii2imagecache\\": ""}
+	}
+}
