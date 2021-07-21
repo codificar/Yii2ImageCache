@@ -7,7 +7,7 @@
 
 <h1 align="center">
   <a href="https://github.com/codificar/yii2imagecache">
-    API Delivery PHP
+    Yii2 ImageCache
   </a>
 </h1>
 <p align="center">
@@ -26,8 +26,6 @@
   </a>
 </p>
 
-ImageCache for Yii2
-===================
 
 Based in [yii2-imagecache](https://github.com/iutbay/yii2-imagecache)
 
