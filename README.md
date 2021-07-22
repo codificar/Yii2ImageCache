@@ -36,13 +36,13 @@ The preferred way to install this helper is through [composer](http://getcompose
 Either run
 
 ```
-php composer.phar require "codificar/yii2imagecache" "dev-main"
+php composer.phar require "codificar/yii2imagecache" "0.0.2"
 ```
 
 or add
 
 ```json
-"codificar/yii2imagecache" : "dev-main"
+"codificar/yii2imagecache" : "0.0.2"
 ```
 
 to the require section of your application's `composer.json` file.
