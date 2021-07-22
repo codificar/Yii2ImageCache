@@ -10,6 +10,7 @@ use yii\helpers\ArrayHelper;
 use Imagine\Image\Color;
 use Imagine\Image\ManipulatorInterface;
 use Imagine\Image\Point;
+use Imagine\Imagick\Imagine;
 
 /**
  * ImageCache Component
@@ -43,6 +44,8 @@ class ImageCache extends \yii\base\Component
         'png' => 'png',
         'gif' => 'gif',
         'bmp' => 'bmp',
+        'webp' => 'webp',
+        'svg' => 'svg',
     ];
     public $text;
 
@@ -149,6 +152,13 @@ class ImageCache extends \yii\base\Component
     {
         // test path
         $info = $this->getPathInfo($path);
+        if(strpos($path, '.webp') !== false) {
+            $info['dstPath'] = str_replace('.webp', '.jpeg', $info['dstPath']);
+            $srcPath = str_replace('.webp', '.jpeg', $info['srcPath']);
+            try {
+                unlink($srcPath);
+            } catch (\Exception $e) {}
+        }
         if (!is_array($info) || (!file_exists($info['dstPath']) && !$this->create($path)))
             return false;
 
@@ -169,28 +179,43 @@ class ImageCache extends \yii\base\Component
      */
     public function createThumb($srcPath, $dstPath, $size, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $quality = 70)
     {
-        if ($size == self::SIZE_FULL) {
-            $thumb = Image::getImagine()->open($srcPath);
-        } else {
-            $width = $this->sizes[$size][0];
-            $height = $this->sizes[$size][1];
-            $thumb = Image::thumbnail($srcPath, $width, $height, $mode);
+
+        try {
+            if ($size == self::SIZE_FULL) {
+                if(strpos($srcPath, '.webp') !== false) {
+                    // Load the WebP file
+                    $im_w = imagecreatefromwebp($srcPath);
+                    // replace string to jpeg
+                    $srcPath = str_replace('.webp', '.jpeg', $srcPath);
+                    // Convert it to a jpeg file with 100% quality
+                    imagejpeg($im_w, $srcPath, 100);
+                    imagedestroy($im_w);
+                    $dstPath = str_replace('.webp', '.jpeg', $dstPath);
+                }
+                $thumb = Image::getImagine()->open($srcPath);
+            } else {
+                $width = $this->sizes[$size][0];
+                $height = $this->sizes[$size][1];
+                $thumb = Image::thumbnail($srcPath, $width, $height, $mode);
+            }
+
+            if (isset($this->text)) {
+                $fontOptions = ArrayHelper::getValue($this->text, 'fontOptions', []);
+                $fontSize = ArrayHelper::getValue($fontOptions, 'size', 12);
+                $fontColor = ArrayHelper::getValue($fontOptions, 'color', 'fff');
+                $fontAngle = ArrayHelper::getValue($fontOptions, 'angle', 0);
+                $start = ArrayHelper::getValue($this->text, 'start', [0, 0]);
+
+                $font = Image::getImagine()->font(Yii::getAlias($this->text['fontFile']), $fontSize, new Color($fontColor));
+                $thumb->draw()->text($this->text['text'], $font, new Point($start[0], $start[1]), $fontAngle);
+            }
+
+            if ($thumb && $thumb->save($dstPath, ['quality' => $quality])) {
+                return true;
+            }
+        } catch (\Exception $e) {
+            return false;
         }
-
-        if (isset($this->text)) {
-            $fontOptions = ArrayHelper::getValue($this->text, 'fontOptions', []);
-            $fontSize = ArrayHelper::getValue($fontOptions, 'size', 12);
-            $fontColor = ArrayHelper::getValue($fontOptions, 'color', 'fff');
-            $fontAngle = ArrayHelper::getValue($fontOptions, 'angle', 0);
-            $start = ArrayHelper::getValue($this->text, 'start', [0, 0]);
-
-            $font = Image::getImagine()->font(Yii::getAlias($this->text['fontFile']), $fontSize, new Color($fontColor));
-            $thumb->draw()->text($this->text['text'], $font, new Point($start[0], $start[1]), $fontAngle);
-        }
-
-        if ($thumb && $thumb->save($dstPath, ['quality' => $quality]))
-            return true;
-
         return false;
     }
 
