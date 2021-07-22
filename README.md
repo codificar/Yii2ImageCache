@@ -19,9 +19,9 @@
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="React Native is released under the MIT license." />
   </a>
   <a href="https://github.com/codificar/yii2imagecache/releases/">
-    <img src="https://img.shields.io/badge/vers%C3%A3o-0.0.1--beta-green" alt="Versão" />
+    <img src="https://img.shields.io/badge/vers%C3%A3o-0.0.3-green" alt="Versão" />
   </a>
-  <a href="https://packagist.org/packages/codificar/yii2imagecache">
+  <a href="https://packagist.org/packages/codificar/yii2imagecache/stats">
     <img src="https://img.shields.io/packagist/dt/codificar/yii2imagecache.svg" alt="Downloads" />
   </a>
 </p>
