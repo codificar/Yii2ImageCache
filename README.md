@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="React Native is released under the MIT license." />
   </a>
   <a href="https://github.com/codificar/yii2imagecache/releases/">
-    <img src="https://img.shields.io/badge/vers%C3%A3o-0.0.3-green" alt="Versão" />
+    <img src="https://img.shields.io/badge/vers%C3%A3o-0.0.4-green" alt="Versão" />
   </a>
   <a href="https://packagist.org/packages/codificar/yii2imagecache/stats">
     <img src="https://img.shields.io/packagist/dt/codificar/yii2imagecache.svg" alt="Downloads" />
@@ -36,13 +36,13 @@ The preferred way to install this helper is through [composer](http://getcompose
 Either run
 
 ```
-php composer.phar require "codificar/yii2imagecache" "0.0.3"
+php composer.phar require "codificar/yii2imagecache" "0.0.4"
 ```
 
 or add
 
 ```json
-"codificar/yii2imagecache" : "0.0.3"
+"codificar/yii2imagecache" : "0.0.4"
 ```
 
 to the require section of your application's `composer.json` file.
