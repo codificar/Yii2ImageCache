@@ -177,7 +177,7 @@ class ImageCache extends \yii\base\Component
      * @param string $mode
      * @return boolean
      */
-    public function createThumb($srcPath, $dstPath, $size, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $quality = 70)
+    public function createThumb($srcPath, $dstPath, $size, $mode = ManipulatorInterface::THUMBNAIL_OUTBOUND, $quality = 40)
     {
 
         try {
