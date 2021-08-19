@@ -46,6 +46,7 @@ class ImageCache extends \yii\base\Component
         'bmp' => 'bmp',
         'webp' => 'webp',
         'svg' => 'svg',
+        'jfif' => 'jfif',
     ];
     public $text;
 
